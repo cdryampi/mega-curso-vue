@@ -1,1 +1,1 @@
-# Ir revisando las ramas.
+# Repaso de JS
