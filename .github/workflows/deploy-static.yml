@@ -13,17 +13,20 @@ jobs:
           - repasoJS
 
     steps:
+      # Paso 1: Checkout del repositorio
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Copy Static Projects
+      # Paso 2: Copiar los archivos del proyecto estático al directorio de construcción
+      - name: Prepare Static Build Output
         run: |
           mkdir -p build/${{ matrix.project }}
-          cp -r ${{ matrix.project }}/* build/${{ matrix.project }}
+          cp -r ${{ matrix.project }}/. build/${{ matrix.project }}/. # Copia todos los archivos
 
-      - name: Deploy Static to GitHub Pages
+      # Paso 3: Desplegar en GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build
+          publish_dir: build/${{ matrix.project }}
           keep_files: true

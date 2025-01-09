@@ -22,7 +22,10 @@ jobs:
               owner,
               repo,
               workflow_id: "deploy-static.yml",
-              ref: "main"
+              ref: "main",
+              inputs: {
+                triggered_by: "master-deploy"
+              }
             });
 
       # Paso 3: Disparar el workflow de proyectos Vue.js
@@ -35,7 +38,10 @@ jobs:
               owner,
               repo,
               workflow_id: "deploy-vue.yml",
-              ref: "main"
+              ref: "main",
+              inputs: {
+                triggered_by: "master-deploy"
+              }
             });
 
       # Paso 4: Disparar el workflow de la lanzadera principal
@@ -48,5 +54,8 @@ jobs:
               owner,
               repo,
               workflow_id: "deploy-launcher.yml",
-              ref: "main"
+              ref: "main",
+              inputs: {
+                triggered_by: "master-deploy"
+              }
             });

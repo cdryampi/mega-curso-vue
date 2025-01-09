@@ -8,14 +8,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Paso 1: Checkout del repositorio
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Copy Launcher
+      # Paso 2: Copiar el archivo launcher a la carpeta de construcción
+      - name: Prepare Launcher for Deployment
         run: |
-          mkdir -p build/
+          mkdir -p build
           cp index.html build/
 
+      # Paso 3: Desplegar el launcher en GitHub Pages
       - name: Deploy Launcher to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
