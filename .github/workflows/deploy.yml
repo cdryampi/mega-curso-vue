@@ -3,16 +3,35 @@ name: Deploy Multiple Projects to GitHub Pages
 on:
   push:
     branches:
-      - main # Activa el workflow cuando hay un push en la rama principal
+      - main # Se ejecuta al hacer push en la rama main
 
 jobs:
-  deploy:
+  deploy-static:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        project: # Lista de carpetas donde están tus proyectos
-          - guitarrala-vue
+        project:
+          - repasoJS # Nombre de carpetas de proyectos estáticos
+
+    steps:
+      # Paso 1: Checkout del repositorio
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Paso 2: Copiar proyectos estáticos
+      - name: Copy Static Projects
+        run: |
+          mkdir -p build/${{ matrix.project }}
+          cp -r ${{ matrix.project }}/* build/${{ matrix.project }}
+
+  deploy-vue:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        project:
+          - guitarrala-vue # Nombre de carpetas de proyectos Vue.js
 
     steps:
       # Paso 1: Checkout del repositorio
@@ -23,18 +42,38 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 18 # Asegúrate de usar una versión compatible
 
-      # Paso 3: Instalar dependencias y construir cada proyecto
+      # Paso 3: Construir proyectos Vue.js
       - name: Install and Build
         working-directory: ${{ matrix.project }}
         run: |
           npm install
           npm run build
 
-      # Paso 4: Desplegar a GitHub Pages
+      # Paso 4: Mover los archivos generados al directorio de salida
+      - name: Move Vue Build Output
+        run: |
+          mkdir -p build/${{ matrix.project }}
+          mv ${{ matrix.project }}/dist/* build/${{ matrix.project }}
+
+  deploy-to-gh-pages:
+    needs: [deploy-static, deploy-vue]
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Checkout del repositorio para mantener el historial
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Paso 2: Copiar la lanzadera principal
+      - name: Copy Launcher
+        run: |
+          cp index.html build/
+
+      # Paso 3: Desplegar a gh-pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ matrix.project }}/dist # Publicar los archivos del build
+          publish_dir: build
