@@ -1,1 +1,3 @@
-guitarrala-vue
+guitarrala-vue/node_modules/
+guitarrala-vue/.vite
+guitarrala-vue/.vscode
