@@ -3,7 +3,7 @@ name: Deploy Multiple Projects to GitHub Pages
 on:
   push:
     branches:
-      - main # Se ejecuta al hacer push en la rama main
+      - main # Ejecutar en cada push a la rama main
 
 jobs:
   deploy-static:
@@ -12,14 +12,14 @@ jobs:
     strategy:
       matrix:
         project:
-          - repasoJS # Nombre de carpetas de proyectos estáticos
+          - repasoJS # Lista de carpetas de proyectos estáticos
 
     steps:
       # Paso 1: Checkout del repositorio
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Paso 2: Copiar proyectos estáticos
+      # Paso 2: Crear carpeta build y copiar proyectos estáticos
       - name: Copy Static Projects
         run: |
           mkdir -p build/${{ matrix.project }}
@@ -31,7 +31,7 @@ jobs:
     strategy:
       matrix:
         project:
-          - guitarrala-vue # Nombre de carpetas de proyectos Vue.js
+          - guitarrala-vue # Lista de carpetas de proyectos Vue.js
 
     steps:
       # Paso 1: Checkout del repositorio
@@ -42,7 +42,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18 # Asegúrate de usar una versión compatible
+          node-version: 18 # Asegúrate de usar una versión compatible con tus proyectos
 
       # Paso 3: Construir proyectos Vue.js
       - name: Install and Build
@@ -51,27 +51,30 @@ jobs:
           npm install
           npm run build
 
-      # Paso 4: Mover los archivos generados al directorio de salida
+      # Paso 4: Mover los archivos generados al directorio build
       - name: Move Vue Build Output
         run: |
           mkdir -p build/${{ matrix.project }}
           mv ${{ matrix.project }}/dist/* build/${{ matrix.project }}
 
   deploy-to-gh-pages:
-    needs: [deploy-static, deploy-vue]
+    needs: [deploy-static, deploy-vue] # Espera a que los otros jobs terminen
     runs-on: ubuntu-latest
 
     steps:
-      # Paso 1: Checkout del repositorio para mantener el historial
+      # Paso 1: Checkout del repositorio (para historial y lanzadera)
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Paso 2: Copiar la lanzadera principal
-      - name: Copy Launcher
-        run: |
-          cp index.html build/
+      # Paso 2: Crear carpeta build si no existe
+      - name: Create Build Directory
+        run: mkdir -p build/
 
-      # Paso 3: Desplegar a gh-pages
+      # Paso 3: Copiar la lanzadera principal
+      - name: Copy Launcher
+        run: cp index.html build/
+
+      # Paso 4: Desplegar a gh-pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
