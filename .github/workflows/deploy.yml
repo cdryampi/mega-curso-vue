@@ -1,0 +1,40 @@
+name: Deploy Multiple Projects to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Activa el workflow cuando hay un push en la rama principal
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        project: # Lista de carpetas donde están tus proyectos
+          - guitarrala-vue
+
+    steps:
+      # Paso 1: Checkout del repositorio
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Paso 2: Configurar Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Paso 3: Instalar dependencias y construir cada proyecto
+      - name: Install and Build
+        working-directory: ${{ matrix.project }}
+        run: |
+          npm install
+          npm run build
+
+      # Paso 4: Desplegar a GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ matrix.project }}/dist # Publicar los archivos del build
