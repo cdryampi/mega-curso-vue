@@ -66,3 +66,16 @@ export default {
 ```bash
 npm run dev
 ```
+
+## Añadir el plugins en Vscode
+
+```bash
+ext install esbenp.prettier-vscode
+ext install octref.vetur
+```
+
+## Añadir el Vue.js devtools en el navegador
+
+```bash
+https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd
+```

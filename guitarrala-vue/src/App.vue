@@ -1,30 +1,46 @@
 <script setup>
-import HelloWorld from "./components/HelloWorld.vue";
+import { onMounted } from "vue";
+import { db } from "./data/guitarras";
+import { useCarrito } from "./composables/useCarrrito";
+import GuitarraComponent from "./components/GuitarraComponent.vue";
+import HeaderComponent from "./components/HeaderComponent.vue";
+import FooterComponent from "./components/FooterComponent.vue";
+
+const { data, agregarCarrito, eliminarCarrito, vaciarCarrito, quitarProducto } =
+  useCarrito(db);
+
+onMounted(() => {
+  data.guitarra_principal =
+    data.guitarras[Math.floor(Math.random() * data.guitarras.length)];
+});
 </script>
 
 <template>
   <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-    <h1 class="text-3xl font-bold underline">Hello world!</h1>
+    <HeaderComponent
+      :carrito="data.carrito"
+      :guitarra_principal="data.guitarra_principal"
+      @agregar-carrito="agregarCarrito"
+      @vaciar-carrito="vaciarCarrito"
+      @eliminar-item="eliminarCarrito"
+      @quitar-producto="quitarProducto"
+    />
+
+    <main class="container-xl mt-5">
+      <h2 class="text-center">Nuestra Colección</h2>
+
+      <div class="row mt-5">
+        <GuitarraComponent
+          v-for="guitarra in data.guitarras"
+          :guitarra="guitarra"
+          :key="guitarra.id"
+          @agregar-carrito="agregarCarrito"
+        />
+      </div>
+    </main>
+
+    <FooterComponent />
   </div>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<style scoped></style>
