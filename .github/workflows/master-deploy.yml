@@ -1,14 +1,18 @@
 name: Master Deploy Workflow
 
 on:
-  workflow_dispatch: # Se ejecuta manualmente o puede ser llamado desde otros workflows
+  workflow_dispatch: # Permite ejecutar manualmente este workflow
 
 jobs:
   deploy-all:
     runs-on: ubuntu-latest
 
     steps:
-      # Llamar al workflow para los proyectos estáticos
+      # Paso 1: Checkout del repositorio
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Paso 2: Disparar el workflow de proyectos estáticos
       - name: Trigger Deploy Static Projects
         uses: actions/github-script@v6
         with:
@@ -16,11 +20,11 @@ jobs:
             github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: "deploy-static.yml",
+              workflow_id: "deploy-static.yml", # Nombre exacto del workflow
               ref: "main" # Rama desde la cual ejecutar
             })
 
-      # Llamar al workflow para los proyectos Vue.js
+      # Paso 3: Disparar el workflow de proyectos Vue.js
       - name: Trigger Deploy Vue.js Projects
         uses: actions/github-script@v6
         with:
@@ -28,11 +32,11 @@ jobs:
             github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: "deploy-vue.yml",
+              workflow_id: "deploy-vue.yml", # Nombre exacto del workflow
               ref: "main"
             })
 
-      # Llamar al workflow para la lanzadera principal
+      # Paso 4: Disparar el workflow de la lanzadera principal
       - name: Trigger Deploy Launcher
         uses: actions/github-script@v6
         with:
@@ -40,6 +44,6 @@ jobs:
             github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: "deploy-launcher.yml",
+              workflow_id: "deploy-launcher.yml", # Nombre exacto del workflow
               ref: "main"
             })
