@@ -17,33 +17,36 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            github.rest.actions.createWorkflowDispatch({
-              owner: "${{ github.repository_owner }}",
-              repo: "${{ github.event.repository.name }}",
+            const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
+            await github.rest.actions.createWorkflowDispatch({
+              owner,
+              repo,
               workflow_id: "deploy-static.yml",
               ref: "main"
-            })
+            });
 
       # Paso 3: Disparar el workflow de proyectos Vue.js
       - name: Trigger Deploy Vue.js Projects
         uses: actions/github-script@v6
         with:
           script: |
-            github.rest.actions.createWorkflowDispatch({
-              owner: "${{ github.repository_owner }}",
-              repo: "${{ github.event.repository.name }}",
+            const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
+            await github.rest.actions.createWorkflowDispatch({
+              owner,
+              repo,
               workflow_id: "deploy-vue.yml",
               ref: "main"
-            })
+            });
 
       # Paso 4: Disparar el workflow de la lanzadera principal
       - name: Trigger Deploy Launcher
         uses: actions/github-script@v6
         with:
           script: |
-            github.rest.actions.createWorkflowDispatch({
-              owner: "${{ github.repository_owner }}",
-              repo: "${{ github.event.repository.name }}",
+            const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
+            await github.rest.actions.createWorkflowDispatch({
+              owner,
+              repo,
               workflow_id: "deploy-launcher.yml",
               ref: "main"
-            })
+            });
