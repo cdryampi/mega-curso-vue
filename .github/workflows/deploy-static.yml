@@ -1,0 +1,33 @@
+name: Deploy Static Projects
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-static:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        project:
+          - repasoJS # Lista de proyectos estáticos
+
+    steps:
+      # Paso 1: Checkout del repositorio
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Paso 2: Crear carpeta build y copiar proyectos estáticos
+      - name: Copy Static Projects
+        run: |
+          mkdir -p build/${{ matrix.project }}
+          cp -r ${{ matrix.project }}/* build/${{ matrix.project }}
+
+      # Paso 3: Desplegar a gh-pages
+      - name: Deploy Static to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build
