@@ -20,7 +20,6 @@ export const useCarrito = (db) => {
     }
 
     guitarraOriginal.stock--;
-
     const guitarraEnCarrito = data.carrito.find((g) => g.id === guitarra.id);
 
     if (guitarraEnCarrito) {
@@ -29,6 +28,7 @@ export const useCarrito = (db) => {
       data.carrito.push({
         ...guitarra,
         stock: 1,
+        bloqueado: false,
       });
     }
   };
@@ -69,6 +69,7 @@ export const useCarrito = (db) => {
 
     if (guitarra.stock > 1) {
       guitarra.stock--;
+      guitarra.bloqueado = false;
     } else {
       eliminarCarrito(guitarra);
     }

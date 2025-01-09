@@ -500,6 +500,34 @@ emits: ['agregar-carrito']
   };
 ```
 
+## computed properties
+
+Las propiedades computadas son propiedades en un componente de Vue que se calculan dinámicamente en función de otras propiedades reactivas. Las propiedades computadas se almacenan en caché y solo se recalculan cuando cambian las propiedades en las que dependen.
+
+```html
+<template>
+  <div>
+    <p>{{ message }}</p>
+    <p>{{ reversedMessage }}</p>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        message: "Hello, Vue!",
+      };
+    },
+    computed: {
+      reversedMessage() {
+        return this.message.split("").reverse().join("");
+      },
+    },
+  };
+</script>
+```
+
 ## ¿Qué es la interpolación de texto?
 
 La interpolación de texto es una característica de Vue que te permite insertar valores de datos en el contenido de un elemento HTML. Puedes usar la sintaxis de doble llave `{{ }}` para interpolar valores de datos en las plantillas de Vue.

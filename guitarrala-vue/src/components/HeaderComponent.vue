@@ -46,7 +46,7 @@
                       <button
                         type="button"
                         class="btn btn-dark"
-                        @click="clickEvent('quitar-producto', producto)"
+                        @click="$emit('quitar-producto', producto)"
                       >
                         -
                       </button>
@@ -54,7 +54,7 @@
                       <button
                         type="button"
                         class="btn btn-dark"
-                        @click="clickEvent('agregar-carrito', producto)"
+                        @click="$emit('agregar-carrito', producto)"
                         :disabled="producto.bloqueado"
                       >
                         +
@@ -64,7 +64,7 @@
                       <button
                         class="btn btn-danger"
                         type="button"
-                        @click="clickEvent('eliminar-item', producto)"
+                        @click="$emit('eliminar-item', producto)"
                       >
                         X
                       </button>
@@ -74,12 +74,12 @@
               </table>
 
               <p class="text-end" v-if="carrito?.length > 0">
-                Total pagar: <span class="fw-bold">{{ total }}€</span>
+                Total pagar: <span class="fw-bold">{{ totalAPagar }}€</span>
               </p>
               <button
                 class="btn btn-dark w-100 mt-3 p-2"
                 v-if="carrito?.length > 0"
-                @click="clickEvent('vaciar-carrito')"
+                @click="$emit('vaciar-carrito')"
               >
                 Vaciar Carrito
               </button>
@@ -101,7 +101,7 @@
           <button
             type="button"
             class="btn fs-4 bg-primary text-white py-2 px-5"
-            @click="clickEvent('agregar-carrito', guitarra_principal)"
+            @click="$emit('agregar-carrito', guitarra_principal)"
             :disabled="guitarra_principal.bloqueado"
           >
             Agregar al Carrito
@@ -123,40 +123,13 @@
 </template>
 
 <script setup>
-import { defineProps, ref, onMounted } from "vue";
-
-const mostrarCarrito = ref(false);
-const total = ref(0);
+import { defineProps, computed } from "vue";
 
 const props = defineProps({
   carrito: Array,
   guitarra_principal: Object,
   required: true,
 });
-
-const toggleCarrito = () => {
-  mostrarCarrito.value = !mostrarCarrito.value;
-};
-
-const calcularTotal = () => {
-  let totalAmount = props.carrito.reduce(
-    (acc, producto) => acc + producto.precio * producto.stock,
-    0
-  );
-  total.value = totalAmount;
-};
-
-const clickEvent = (emitEvent, producto) => {
-  switch (emitEvent) {
-    case "vaciar-carrito":
-      emit(emitEvent);
-      break;
-    default:
-      emit(emitEvent, producto);
-      break;
-  }
-  calcularTotal();
-};
 
 const emit = defineEmits([
   "agregar-carrito",
@@ -165,8 +138,11 @@ const emit = defineEmits([
   "quitar-producto",
 ]);
 
-onMounted(() => {
-  calcularTotal();
+const totalAPagar = computed(() => {
+  return props.carrito.reduce(
+    (total, producto) => total + producto.precio * producto.stock,
+    0
+  );
 });
 </script>
 
