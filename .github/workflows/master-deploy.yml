@@ -1,0 +1,45 @@
+name: Master Deploy Workflow
+
+on:
+  workflow_dispatch: # Se ejecuta manualmente o puede ser llamado desde otros workflows
+
+jobs:
+  deploy-all:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Llamar al workflow para los proyectos estáticos
+      - name: Trigger Deploy Static Projects
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: "deploy-static.yml",
+              ref: "main" # Rama desde la cual ejecutar
+            })
+
+      # Llamar al workflow para los proyectos Vue.js
+      - name: Trigger Deploy Vue.js Projects
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: "deploy-vue.yml",
+              ref: "main"
+            })
+
+      # Llamar al workflow para la lanzadera principal
+      - name: Trigger Deploy Launcher
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: "deploy-launcher.yml",
+              ref: "main"
+            })
