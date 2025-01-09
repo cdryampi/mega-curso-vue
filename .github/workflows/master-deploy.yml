@@ -18,10 +18,10 @@ jobs:
         with:
           script: |
             github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: "deploy-static.yml", # Nombre exacto del workflow
-              ref: "main" # Rama desde la cual ejecutar
+              owner: "${{ github.repository_owner }}",
+              repo: "${{ github.event.repository.name }}",
+              workflow_id: "deploy-static.yml",
+              ref: "main"
             })
 
       # Paso 3: Disparar el workflow de proyectos Vue.js
@@ -30,9 +30,9 @@ jobs:
         with:
           script: |
             github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: "deploy-vue.yml", # Nombre exacto del workflow
+              owner: "${{ github.repository_owner }}",
+              repo: "${{ github.event.repository.name }}",
+              workflow_id: "deploy-vue.yml",
               ref: "main"
             })
 
@@ -42,8 +42,8 @@ jobs:
         with:
           script: |
             github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: "deploy-launcher.yml", # Nombre exacto del workflow
+              owner: "${{ github.repository_owner }}",
+              repo: "${{ github.event.repository.name }}",
+              workflow_id: "deploy-launcher.yml",
               ref: "main"
             })
