@@ -1,5 +1,5 @@
 <script setup>
-import { defineAsyncComponent, onMounted, ref } from "vue";
+import { defineAsyncComponent, onMounted, ref, watch } from "vue";
 import { db } from "./data/guitarras";
 import { useCarrito } from "./composables/useCarrrito";
 
@@ -24,13 +24,52 @@ const { data, agregarCarrito, eliminarCarrito, vaciarCarrito, quitarProducto } =
 
 const isLoading = ref(true);
 
+const guardarLocalStorange = () => {
+  try {
+    const carritoString = JSON.stringify(data.carrito);
+    localStorage.setItem("carrito", carritoString);
+  } catch (error) {
+    console.error("Error al guardar en localStorage", error);
+  }
+};
+
+watch(
+  () => data.carrito,
+  (nuevoCarrito) => {
+    guardarLocalStorange();
+  },
+  { deep: true }
+);
+
 onMounted(() => {
   data.guitarra_principal =
     data.guitarras[Math.floor(Math.random() * data.guitarras.length)];
 
+  const carritoStorage = localStorage.getItem("carrito");
+  if (carritoStorage) {
+    try {
+      const carritoParseado = JSON.parse(carritoStorage);
+      data.carrito = carritoParseado;
+
+      carritoParseado.forEach((item) => {
+        const guitarra = data.guitarras.find((g) => g.id === item.id);
+        if (guitarra) {
+          guitarra.stock -= item.stock;
+          if (guitarra.stock <= 0) {
+            guitarra.bloqueado = true;
+          } else {
+            guitarra.bloqueado = false;
+          }
+        }
+      });
+    } catch (error) {
+      console.error("Error al parsear el carrito del localStorage", error);
+      localStorage.removeItem("carrito");
+    }
+  }
   setTimeout(() => {
     isLoading.value = false;
-  }, 2000);
+  }, 1000);
 });
 </script>
 
