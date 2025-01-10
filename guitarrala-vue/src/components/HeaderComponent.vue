@@ -3,7 +3,7 @@
     <div class="container-xl">
       <div class="row justify-content-center justify-content-md-between">
         <div class="col-8 col-md-3">
-          <a href="index.html">
+          <a href="/index.html">
             <img class="img-fluid" src="/img/logo.svg" alt="imagen logo" />
           </a>
         </div>
@@ -13,7 +13,7 @@
           <div class="carrito" @mouseover="calcularTotal">
             <img
               class="img-fluid"
-              src="/img/carrito.png"
+              src="./img/carrito.png"
               alt="imagen carrito"
             />
 
@@ -36,7 +36,7 @@
                     <td>
                       <img
                         class="img-fluid"
-                        :src="`/img/${producto.imagen}.jpg`"
+                        :src="`./img/${producto.imagen}.jpg`"
                         alt="imagen guitarra"
                       />
                     </td>
@@ -111,12 +111,12 @@
     </div>
     <img
       class="header-guitarra"
-      :src="`/img/${guitarra_principal.imagen}.png`"
+      :src="`./img/${guitarra_principal.imagen}.png`"
       :alt="`imagen de +${guitarra_principal.nombre}`"
     />
     <img
       class="header-guitarra-secondary"
-      :src="`/img/header_guitarra.png`"
+      :src="`./img/header_guitarra.png`"
       :alt="`imagen de +${guitarra_principal.nombre}`"
     />
   </header>
