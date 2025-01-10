@@ -13,33 +13,27 @@ jobs:
           - guitarrala-vue
 
     steps:
-      # Paso 1: Checkout del repositorio
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Paso 2: Configurar Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      # Paso 3: Instalar dependencias y construir la app
       - name: Install and Build
         working-directory: ${{ matrix.project }}
         run: |
           npm install
           npm run build
 
-      # Paso 4: Mover salida del build
-      - name: Prepare Build Output for Deployment
+      - name: Move Vue Build Output
         run: |
           mkdir -p build/${{ matrix.project }}
           mv ${{ matrix.project }}/dist/* build/${{ matrix.project }}
 
-      # Paso 5: Desplegar en GitHub Pages
-      - name: Deploy to GitHub Pages
+      - name: Deploy Vue to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/${{ matrix.project }}
-          keep_files: true
+          publish_dir: build
