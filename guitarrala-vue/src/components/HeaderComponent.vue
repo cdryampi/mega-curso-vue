@@ -13,7 +13,7 @@
           <div class="carrito" @mouseover="calcularTotal">
             <img
               class="img-fluid"
-              src="./img/carrito.png"
+              src="/img/carrito.png"
               alt="imagen carrito"
             />
 
