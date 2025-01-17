@@ -1,4 +1,0 @@
-source "https://rubygems.org"
-
-gem "jekyll", "~> 4.2.0" # Versión estable recomendada de Jekyll
-gem "minima", "~> 2.5"   # Si estás usando el tema Minima
