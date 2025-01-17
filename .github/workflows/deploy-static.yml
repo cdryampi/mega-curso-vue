@@ -12,6 +12,7 @@ jobs:
         project:
           - repasoJS
           - resumen-IFCD65
+          - repaso-HTML
 
     steps:
       - name: Checkout code

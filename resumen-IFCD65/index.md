@@ -79,6 +79,29 @@ Este curso de Desarrollo de aplicaciones con tecnologías web es una formación 
 - Se explicará como se hace un desarrollo en un framework con un equipo.
 - Se explicará como seleccionar un framework.
 
+### Segunda parte de la presentación
+
+- Se ha explicado los frameworks y la popularidad de los mismos.
+- Se ha visto el mercado laboral y la demanda de los frameworks.
+- Mención honorífica a Astro, un framework que está en auge. # Hay que hacer caso a Miguel Ángel Durán.
+- El profesor recomienda aprender React por la demanda laboral actual a 2025.
+- Se esta valorando la posibilidad de hacer un proyecto con React, Angular y Vue.
+- Se esta explicando la importancia del LinkedIn para encontrar trabajo.
+
+#### recomendaciones del intorno de desarrollo
+
+- Se recomienda Visual Studio Code.
+- Las segundas más populares pueden haber problemas con los plugins y de rendimiento.
+- PyChar es una buena opción para Python.
+- IntelliJ IDEA es una buena opción para Java.
+- Visual Studio es una buena opción para C# y para proyectos de Microsoft.
+
+### Salarios de frontend
+
+- Se ha explicado los salarios de frontend en España. 26.000 - 40.000 euros.
+- Se ha explicado los salarios de backend en España. 30.000 - 50.000 euros.
+- Se recomienda ser un programador fullstack para tener un salario más alto. 40.000 - 60.000 euros. # soñar es positivo
+
 ### perfil del primer profesor
 
 - Sabe de Python y de blockchain.
@@ -86,3 +109,18 @@ Este curso de Desarrollo de aplicaciones con tecnologías web es una formación 
 - Es un entusiasta del CHAT GPT.
 
 - Es de Perú.
+
+- Sabe Django.
+
+# Links de interés
+
+- Libro de Miguel Ángel Durán: [libro GIT](https://drive.google.com/drive/folders/1xU8ekvIfWdrnx53cP_gjsVFxhoshX4-m?usp=drive_link)
+- Link de Stack Overflow: [Stack Overflow](https://stackoverflow.com/)
+- Link de los salarios de glassdoor: [Glassdoor](https://www.glassdoor.es/Salarios/index.htm)
+
+# Volver al [inicio](../index.html)
+
+# notas del curso
+
+Se ha cambiado el calendario de finalización del día presencial.
+Se recomienda constancia en el estudio para poder permanecer en el sertor y en el mundillo de la programación.
