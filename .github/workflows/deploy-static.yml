@@ -27,6 +27,7 @@ jobs:
       - name: Install Jekyll and dependencies
         if: ${{ matrix.project == 'resumen-IFCD65' }}
         run: |
+          cd resumen-IFCD65
           gem install bundler
           bundle install
 
