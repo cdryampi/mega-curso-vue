@@ -1,0 +1,152 @@
+<h1 id="que-es-github">Que es GitHub</h1>
+
+<p>GitHub es una plataforma de desarrollo colaborativo para alojar proyectos utilizando el sistema de control de versiones Git. Se utiliza principalmente para la creación de código fuente de programas de ordenador. El software que opera GitHub fue escrito en Ruby on Rails. Desde enero de 2010, GitHub opera bajo el nombre de GitHub, Inc. Antes se llamaba Logical Awesome LLC. El código de los proyectos alojados en GitHub se almacena típicamente de forma pública, aunque utilizando una cuenta de pago, también se pueden hospedar repositorios privados.</p>
+
+<h2 id="que-podemos-hacer-con-una-cuenta-de-github">Que podemos hacer con una cuenta de GitHub</h2>
+
+<ul>
+  <li>
+    <p>Podemos ver el historial de cambios de un proyecto.</p>
+  </li>
+  <li>Crear repositorios</li>
+  <li>Clonar repositorios</li>
+  <li>Crear ramas</li>
+  <li>Crear Pull Request</li>
+  <li>Crear Issues</li>
+  <li>Crear proyectos</li>
+  <li>Crear Wikis</li>
+  <li>Crear Gists</li>
+  <li>Crear Organizaciones</li>
+  <li>Crear Teams</li>
+</ul>
+
+<h1 id="resumen-del-libro-aprendiendo-git">Resumen del Libro: Aprendiendo Git</h1>
+
+<h2 id="introducción">Introducción</h2>
+
+<p>El libro <strong>“Aprendiendo Git”</strong> de Miguel Ángel Durán García es una guía completa para entender y dominar Git, el sistema de control de versiones más utilizado en el desarrollo de software. Su objetivo es proporcionar una base sólida para principiantes y ampliar los conocimientos de usuarios avanzados.</p>
+
+<hr />
+
+<h2 id="contenidos-principales">Contenidos Principales</h2>
+
+<h3 id="conceptos-básicos">Conceptos Básicos</h3>
+
+<ul>
+  <li><strong>Control de versiones:</strong> Importancia de mantener un historial de cambios del código.</li>
+  <li><strong>Git vs GitHub:</strong> Diferencias entre el sistema de control de versiones y la plataforma en la nube.</li>
+  <li><strong>Estados en Git:</strong> Modificado, preparado y confirmado.</li>
+</ul>
+
+<h3 id="trabajando-con-git-localmente">Trabajando con Git Localmente</h3>
+
+<ul>
+  <li>Inicialización de repositorios.</li>
+  <li>Comandos básicos: <code class="language-plaintext highlighter-rouge">git add</code>, <code class="language-plaintext highlighter-rouge">git commit</code>, <code class="language-plaintext highlighter-rouge">git status</code>, <code class="language-plaintext highlighter-rouge">git log</code>.</li>
+  <li>Uso de <code class="language-plaintext highlighter-rouge">.gitignore</code> y restauración de versiones previas.</li>
+</ul>
+
+<h3 id="git-remoto-y-github">Git Remoto y GitHub</h3>
+
+<ul>
+  <li>Clonar, enlazar y sincronizar repositorios locales con remotos.</li>
+  <li>Uso de autenticación SSH para evitar el uso de contraseñas.</li>
+  <li>Creación y manejo de Pull Requests.</li>
+</ul>
+
+<hr />
+
+<h2 id="github-cli-y-automatización">GitHub CLI y Automatización</h2>
+
+<h3 id="introducción-a-github-cli">Introducción a GitHub CLI</h3>
+
+<p>GitHub CLI (<code class="language-plaintext highlighter-rouge">gh</code>) es una herramienta que permite interactuar con GitHub desde la línea de comandos. Esto facilita la automatización de tareas comunes, eliminando la necesidad de depender exclusivamente de la interfaz web.</p>
+
+<h3 id="instalación">Instalación</h3>
+
+<ol>
+  <li>Descargar la herramienta desde el <a href="https://cli.github.com/">sitio oficial</a>.</li>
+  <li>Instalar según tu sistema operativo:
+    <ul>
+      <li><strong>Linux:</strong> <code class="language-plaintext highlighter-rouge">sudo apt install gh</code></li>
+      <li><strong>macOS:</strong> <code class="language-plaintext highlighter-rouge">brew install gh</code></li>
+      <li><strong>Windows:</strong> Usar el instalador oficial.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="configuración-inicial">Configuración Inicial</h3>
+
+<p>Ejecutar el comando:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh auth login
+</code></pre></div></div>
+
+<p>Sigue las instrucciones para autenticarte mediante navegador o token.</p>
+
+<h3 id="comandos-básicos">Comandos Básicos</h3>
+
+<ol>
+  <li><strong>Clonar un repositorio:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh repo clone &lt;owner&gt;/&lt;repo&gt;
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Crear un fork:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh repo fork &lt;repo-url&gt;
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Crear una Pull Request:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh <span class="nb">pr </span>create <span class="nt">--title</span> <span class="s2">"Descripción"</span> <span class="nt">--body</span> <span class="s2">"Detalles del cambio"</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Revisar y fusionar Pull Requests:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh <span class="nb">pr </span>list
+gh <span class="nb">pr </span>merge &lt;pr-number&gt;
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="automatización-con-github-actions">Automatización con GitHub Actions</h3>
+
+<p>GitHub Actions permite definir flujos de trabajo automatizados directamente en el repositorio mediante archivos YAML en <code class="language-plaintext highlighter-rouge">.github/workflows/</code>.</p>
+
+<h4 id="ejemplo-básico-de-workflow">Ejemplo Básico de Workflow</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">CI/CD Workflow</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">push</span><span class="pi">:</span>
+    <span class="na">branches</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">main</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Checkout código</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v3</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Configurar Node.js</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/setup-node@v3</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">node-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">16"</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Instalar dependencias</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">npm install</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Ejecutar pruebas</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">npm test</span>
+</code></pre></div></div>
+
+<h3 id="beneficios">Beneficios</h3>
+
+<ul>
+  <li><strong>Productividad:</strong> Realiza tareas como crear repositorios, issues o PRs sin salir de la terminal.</li>
+  <li><strong>Automatización:</strong> Combina GitHub CLI con scripts y GitHub Actions para flujos de trabajo optimizados.</li>
+  <li><strong>Escalabilidad:</strong> Ideal para equipos y proyectos que buscan integración y despliegue continuos.</li>
+</ul>
+
+<hr />
+
+<h1 id="volver-al-inicio">Volver al <a href="../index.html">inicio</a></h1>
