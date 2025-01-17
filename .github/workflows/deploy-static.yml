@@ -10,7 +10,6 @@ jobs:
     strategy:
       matrix:
         project:
-          - repasoJS
           - resumen-IFCD65
           - repaso-HTML
 
