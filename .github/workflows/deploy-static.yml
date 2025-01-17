@@ -1,10 +1,10 @@
-name: Deploy Static Projects
+name: Deploy Static and Markdown Projects
 
 on:
-  workflow_dispatch: # Activado solo por el workflow maestro
+  workflow_dispatch: # Ejecutado manualmente desde GitHub Actions
 
 jobs:
-  deploy-static:
+  deploy-content:
     runs-on: ubuntu-latest
 
     strategy:
@@ -17,12 +17,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Build Jekyll site for Markdown
+        if: ${{ matrix.project == 'resumen-IFCD65' }}
+        run: |
+          cd resumen-IFCD65
+          bundle install
+          jekyll build -d ../build/resumen-IFCD65
+
       - name: Copy Static Projects
+        if: ${{ matrix.project != 'resumen-IFCD65' }}
         run: |
           mkdir -p build/${{ matrix.project }}
           cp -r ${{ matrix.project }}/* build/${{ matrix.project }}
 
-      - name: Deploy Static to GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
