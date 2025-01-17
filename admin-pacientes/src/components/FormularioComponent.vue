@@ -29,9 +29,7 @@
           >
             Nombre de la mascota
           </label>
-          <p v-if="errors.nombreMascota" class="text-red-500 text-xs italic">
-            {{ errors.nombreMascota }}
-          </p>
+          <AlertaComponent v-if="errors.mascota" :alertMsg="errors.mascota" />
         </div>
         <!-- Fin del input del nombre de la mascota -->
 
@@ -52,12 +50,7 @@
           >
             Nombre del propietario
           </label>
-          <p
-            v-if="errors.nombrePropietario"
-            class="text-red-500 text-xs italic"
-          >
-            {{ errors.nombrePropietario }}
-          </p>
+          <AlertaComponent v-if="errors.nombre" :alertMsg="errors.nombre" />
         </div>
         <!-- Fin del input de nombre del propietario -->
         <!-- Inicio del input del email -->
@@ -77,9 +70,7 @@
           >
             Email
           </label>
-          <p v-if="errors.email" class="text-red-500 text-xs italic">
-            {{ errors.email }}
-          </p>
+          <AlertaComponent v-if="errors.email" :alertMsg="errors.email" />
         </div>
         <!-- Fin del input del email -->
         <!-- Inicio del input de la fecha de alta -->
@@ -99,9 +90,7 @@
           >
             Fecha de alta
           </label>
-          <p v-if="errors.fechaAlta" class="text-red-500 text-xs italic">
-            {{ errors.fechaAlta }}
-          </p>
+          <AlertaComponent v-if="errors.fecha" :alertMsg="errors.fecha" />
         </div>
         <!-- Fin del input de la fecha de alta -->
         <!-- Inicio del input de los síntomas -->
@@ -120,9 +109,7 @@
           >
             Síntomas
           </label>
-          <p v-if="errors.sintomas" class="text-red-500 text-xs italic">
-            {{ errors.sintomas }}
-          </p>
+          <AlertaComponent v-if="errors.sintomas" :alertMsg="errors.sintomas" />
         </div>
         <!-- Fin del input de los síntomas -->
         <!-- Inicio del botón de registrar paciente -->
@@ -164,17 +151,31 @@
         </li>
       </ul>
     </div>
+    <!-- Popup cuando se da de alta un cliente-->
+    <PopUpComponent
+      :popupAltas="popupAltas"
+      @open-close-popup="openClosePopup"
+    />
   </div>
 </template>
 
 <script setup>
+// importaciones de Vue
 import { ref, reactive } from "vue";
+// importaciones de los componenentes personalizados
 import { useValidation } from "../composables/useValidation";
-
+import AlertaComponent from "./AlertaComponent.vue";
+import PopUpComponent from "./PopUpComponent.vue";
+// importaciones de los datos de las citas
 import citas from "../data/citas.js";
 
-const { errors, validateNombre, validateEmail, validateTextarea } =
-  useValidation();
+const {
+  errors,
+  validateNombre,
+  validateEmail,
+  validateTextarea,
+  validateDate,
+} = useValidation();
 
 const formulario = reactive({
   nombreMascota: "",
@@ -184,18 +185,25 @@ const formulario = reactive({
   sintomas: "",
 });
 
+const popupAltas = ref(false);
+
 const altasClientes = reactive([]);
 
 citas.forEach((cita) => {
   altasClientes.push(cita);
 });
 
+const openClosePopup = () => {
+  popupAltas.value = !popupAltas.value;
+};
+
 const enviarFormulario = () => {
   if (
     !validateNombre(formulario.nombreMascota, "mascota") ||
     !validateNombre(formulario.nombrePropietario, "propietario") ||
     !validateEmail(formulario.email, "email") ||
-    !validateTextarea(formulario.sintomas, "sintomas")
+    !validateTextarea(formulario.sintomas, "sintomas") ||
+    !validateDate(formulario.fechaAlta, "fecha")
   ) {
     return;
   }
@@ -215,6 +223,7 @@ const enviarFormulario = () => {
   formulario.fechaAlta = "";
   formulario.sintomas = "";
   console.log("Formulario enviado");
+  openClosePopup();
 };
 
 const eliminarCliente = (id) => {

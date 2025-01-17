@@ -11,6 +11,7 @@ jobs:
       matrix:
         project:
           - repasoJS
+          - resumen-IFCD65
 
     steps:
       - name: Checkout code

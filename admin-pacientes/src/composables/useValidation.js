@@ -13,6 +13,7 @@ export function useValidation() {
     // Si el valor es igual a un string vacio, entonces el campo es obligatorio
     if (value === "") {
       errors.value[inputname] = "El campo es obligatorio";
+      return false;
     } else {
       errors.value[inputname] = null;
     }
@@ -24,6 +25,7 @@ export function useValidation() {
     const re = /\S+@\S+\.\S+/;
     if (!re.test(value)) {
       errors.value[inputname] = "Email no valido";
+      return false;
     } else {
       errors.value[inputname] = null;
     }
@@ -34,6 +36,21 @@ export function useValidation() {
   const validateTextarea = (value, inputname) => {
     if (value === "") {
       errors.value[inputname] = "El campo es obligatorio";
+      return false;
+    } else {
+      errors.value[inputname] = null;
+    }
+    // devolver el mismo valor que recibimos pero sin espacios en blanco
+    return value.trim();
+  };
+
+  const validateDate = (value, inputname) => {
+    // valida si la fecha es mayor a la fecha actual
+    const date = new Date();
+    const dateValue = new Date(value);
+    if (dateValue < date) {
+      errors.value[inputname] = "Fecha no valida";
+      return false;
     } else {
       errors.value[inputname] = null;
     }
@@ -46,5 +63,6 @@ export function useValidation() {
     validateNombre,
     validateEmail,
     validateTextarea,
+    validateDate,
   };
 }
