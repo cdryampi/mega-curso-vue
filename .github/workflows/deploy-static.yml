@@ -17,12 +17,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Setup Ruby for Jekyll
+        if: ${{ matrix.project == 'resumen-IFCD65' }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.0" # Cambia según la versión compatible con Jekyll
+          bundler-cache: true
+
+      - name: Install Jekyll and dependencies
+        if: ${{ matrix.project == 'resumen-IFCD65' }}
+        run: |
+          gem install bundler
+          bundle install
+
       - name: Build Jekyll site for Markdown
         if: ${{ matrix.project == 'resumen-IFCD65' }}
         run: |
           cd resumen-IFCD65
-          bundle install
-          jekyll build -d ../build/resumen-IFCD65
+          bundle exec jekyll build -d ../build/resumen-IFCD65
 
       - name: Copy Static Projects
         if: ${{ matrix.project != 'resumen-IFCD65' }}
