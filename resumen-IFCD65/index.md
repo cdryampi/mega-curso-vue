@@ -1,3 +1,8 @@
+---
+layout: resumen de curso de IFCD65
+title: Resumen del curso de Desarrollo de aplicaciones con tecnologías web
+---
+
 # IFCD65 CURSO DEL SEPE: Desarrollo de aplicaciones con tecnologías web
 
 ## Resumen del curso
