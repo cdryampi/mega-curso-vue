@@ -1,8 +1,100 @@
 <!-- 
-    Crea una página web que muestre en en la primera línea del cuerpo de la página un título, con su etiqueta h1, "Mi primera página Web". En un párrafo a continuación se mostrará el texto:
+    Crea una página web que muestre en en la primera línea del cuerpo de la página un título, con su etiqueta h1, "Mi primera página Web".
+    En un párrafo a continuación se mostrará el texto:
 
-    Mi primera página web con algo más de texto.
-    Este párrafo está formado por dos lineas.
+    - Mi primera página web con algo más de texto.
+    - Este párrafo está formado por dos lineas.
 
     Es decir el párrafo con el contenido deberá tener 2 líneas. El título de la página será "Página Web: párrafos y lineas". 
 -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/css/output.css" />
+    <title>Ejercicio 2</title>
+  </head>
+  <body class="h-fit w-full bg-gray-100">
+    <main class="mx-auto mt-10 flex flex-col gap-5">
+      <section class="container p-5">
+        <h1 class="text-4xl text-purple-800 font-extrabold mb-10">
+          Ejercicio 02: párrafos y lineas
+        </h1>
+        <p class="text-gray-900">
+          Crea una página web que muestre en en la primera línea del cuerpo de
+          la página un título, con su etiqueta
+          <span class="text-purple-800 font-extrabold">h1</span>,
+          <span class="text-purple-800 font-extrabold italic"
+            >"Mi primera página Web"</span
+          >
+          .
+        </p>
+        <p class="text-gray-900">
+          En un párrafo
+          <span class="text-purple-800 font-extrabold">p</span> a continuación
+          se mostrará el texto:
+        </p>
+        <ul class="max-w-md space-y-1 text-gray-500 flex flex-col gap-1">
+          <li>Mi primera página web con algo más de texto.</li>
+          <li>Este párrafo está formado por dos lineas.</li>
+        </ul>
+      </section>
+      <section class="container p-5">
+        <h1 class="text-4x text-purple-800 font-extrabold">
+          Mi primera página Web
+        </h1>
+        <p class="text-lg text-gray-700">
+          Mi primera página web con algo más de texto.<br />
+          Este párrafo está formado por dos lineas.
+        </p>
+      </section>
+      <section class="container p-5">
+        <h2 class="text-lg text-purple-800 font-extrabold">Ejemplo de html:</h2>
+        <code class="">
+          <pre class="text-lg bg-black p-5 text-white rounded-lg">
+            <span class="text-purple-800">&lt;h1&gt;</span> 
+              Mi primera página Web
+              <span class="text-purple-800">&lt;/h1&gt;</span>
+              <span class="text-purple-800">&lt;p&gt;</span>
+              Mi primera página web con algo más de texto.<span class="text-purple-800">&lt;br /&gt;</span>
+              Este párrafo está formado por dos lineas.
+              <span class="text-purple-800">&lt;/p&gt;</span>
+          </pre>
+        </code>
+      </section>
+      <section class="container p-5 mb-20">
+        <h2 class="text-lg text-purple-800 font-extrabold">
+          Alternativa con dos párrafos:
+        </h2>
+        <code class="">
+          <pre class="text-lg bg-black p-5 text-white rounded-lg">
+            <span class="text-purple-800">&lt;h1&gt;</span> 
+              Mi primera página Web
+              <span class="text-purple-800">&lt;/h1&gt;</span>
+              <span class="text-purple-800">&lt;p&gt;</span>
+              Mi primera página web con algo más de texto.
+              <span class="text-purple-800">&lt;/p&gt;</span>
+              <span class="text-purple-800">&lt;p&gt;</span>
+              Este párrafo está formado por dos lineas.
+              <span class="text-purple-800">&lt;/p&gt;</span>
+          </pre>
+        </code>
+      </section>
+    </main>
+    <footer class="text-center mt-10 fixed bottom-0 w-screen bg-black p-5">
+      <div class="flex flex-row justify-between">
+        <a
+          href="./01.html"
+          class="cursor-pointer text-white font-semibold block"
+          >anterior</a
+        >
+        <a
+          class="cursor-pointer text-white font-semibold block"
+          href="./03.html"
+          >siguiente</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,8 +1,76 @@
 <!-- 
-    Crea una página web con título Destacar texto con negritas. El contenido de la página debe tener una primera linea con un titular h1 Texto en negrita.El contendio del cuerpo es como se indica aquí
+    Crea una página web con título Destacar texto con negritas. El contenido de la página debe tener una primera linea con un titular h1 Texto en negrita.
+    El contendio del cuerpo es como se indica aquí
 
     Sevilla
     Sevilla es la capital de la Andalucía. Está atravesada por el río Guadalquivir y es famosa por la fería de Abril entre otros atractivos.
 
     Es decir la palabra Sevilla debe quedar en negrita en un párrafo. El párrafo siguiente es la descripción que va en texto normal. 
 -->
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/css/output.css" />
+    <title>Ejercicio 3</title>
+  </head>
+  <body class="h-full w-full bg-gray-100">
+    <main class="mx-auto mt-10 flex flex-col gap-5">
+      <section class="container p-5">
+        <h1 class="text-4xl text-purple-800 font-extrabold mb-10">
+          Ejercicio 03: párrafos y negritas en html
+        </h1>
+        <p class="text-gray-900">
+          Crea una página web con título Destacar texto con negritas
+          <span class="text-purple-800 font-extrabold">strong</span> . El
+          contenido de la página debe tener una primera linea con un titular
+          <span class="text-purple-800 font-extrabold">h1</span> Texto en
+          negrita. El contendio del cuerpo es como se indica aquí:
+        </p>
+        <p class="text-gray-900">Sevilla</p>
+        <p class="text-gray-900">
+          Sevilla es la capital de la Andalucía. Está atravesada por el río
+          Guadalquivir y es famosa por la fería de Abril entre otros atractivos.
+        </p>
+      </section>
+      <section class="container p-5">
+        <h1 class="text-8xl text-purple-800 font-extrabold">Sevilla</h1>
+        <p class="text-lg text-gray-700">
+          <strong>Sevilla</strong>
+          <span class="indent-5"
+            >es la capital de la Andalucía. Está atravesada por el río
+            Guadalquivir y es famosa por la fería de Abril entre otros
+            atractivos.</span
+          >
+        </p>
+      </section>
+      <section class="container p-5">
+        <h2 class="text-lg text-purple-800 font-extrabold">Ejemplo de html:</h2>
+        <code class="">
+          <pre class="text-lg bg-black p-5 text-white rounded-lg">
+            <span class="text-purple-800">&lt;h1&gt;</span>Sevilla<span class="text-purple-800">&lt;/h1&gt;</span>
+              <span class="text-purple-800">&lt;p&gt;</span>
+              <span class="text-purple-800">&lt;strong&gt;</span>Sevilla<span class="text-purple-800">&lt;/strong&gt;</span>Mi primera página web con algo más de texto.Este párrafo está formado por dos lineas.
+              <span class="text-purple-800">&lt;/p&gt;</span>
+          </pre>
+        </code>
+      </section>
+    </main>
+    <footer class="text-center mt-10 fixed bottom-0 w-screen bg-black p-5">
+      <div class="flex flex-row justify-between">
+        <a
+          href="./02.html"
+          class="cursor-pointer text-white font-semibold block"
+          >anterior</a
+        >
+        <a
+          class="cursor-pointer text-white font-semibold block"
+          href="./04.html"
+          >siguiente</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>

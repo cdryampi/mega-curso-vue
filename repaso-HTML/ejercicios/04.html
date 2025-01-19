@@ -10,3 +10,73 @@
     Visualmente es lo mismo itálica que enfatizado, pero HTML 5 sólo da significado semántico al enfatizado
 
     Utiliza adecuadamente las etiquetas para itálica y para enfásis. -->
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/css/output.css" />
+    <title>Ejercicio 4</title>
+  </head>
+  <body class="h-full w-full bg-gray-100">
+    <main class="mx-auto mt-10 flex flex-col gap-5">
+      <section class="container p-5">
+        <h1 class="text-4xl text-purple-800 font-extrabold mb-10">
+          Ejercicio 04: itálicas o cursivas
+        </h1>
+        <p class="text-gray-900 mb-10">
+          Crea una página con título Enfatizar texto. En la primera linea coloca
+          un titular con el texto Enfatizados
+          <span class="text-purple-800 font-extrabold">i</span> y cursivas
+          <span class="text-purple-800 font-extrabold">em</span>. <br />
+          El texto del cuerpo de la página irá en dos párrafos como se muestra
+          aquí:
+        </p>
+        <p class="text-gray-900 mb-10">
+          Enfatizar un texto visualmente es ponerlo en cursiva o itálica, es
+          decir que la fuente aparece algo inclinada.
+        </p>
+        <p class="text-gray-900">
+          Visualmente es lo mismo <em class="italic">itálica</em> que
+          enfatizado, pero HTML 5 sólo da significado semántico al enfatizado
+        </p>
+      </section>
+      <section class="container p-5">
+        <p class="">
+          Enfatizar un texto visualmente es ponerlo en
+          <i class="italic text-purple-800 font-extrabold">cursiva o itálica</i
+          >, es decir que la fuente aparece algo inclinada.
+        </p>
+        <p class="">
+          Visualmente es lo mismo
+          <em class="italic text-purple-800 font-extrabold">itálica</em> que
+          enfatizado, pero HTML 5 sólo da significado semántico al enfatizado
+        </p>
+      </section>
+      <section class="container p-5">
+        <h2 class="text-lg text-purple-800 font-extrabold">Ejemplo de html:</h2>
+        <code class="">
+          <pre class="text-lg bg-black p-5 text-white rounded-lg">
+            <span class="text-purple-800">&lt;p&gt;</span>Enfatizar un texto visualmente es ponerlo en <span class="text-purple-800">&lt;i&gt;</span>cursiva o itálica<span class="text-purple-800">&lt;/i&gt;</span>, es decir que la fuente aparece algo inclinada.<span class="text-purple-800">&lt;/p&gt;</span>
+            <span class="text-purple-800">&lt;p&gt;</span>Visualmente es lo mismo <span class="text-purple-800">&lt;em&gt;</span>itálica<span class="text-purple-800">&lt;/em&gt;</span> que enfatizado, pero HTML 5 sólo da significado semántico al enfatizado<span class="text-purple-800">&lt;/p&gt;</span>
+            </pre>
+        </code>
+      </section>
+    </main>
+    <footer class="text-center mt-10 fixed bottom-0 w-screen bg-black p-5">
+      <div class="flex flex-row justify-between">
+        <a
+          href="./03.html"
+          class="cursor-pointer text-white font-semibold block"
+          >anterior</a
+        >
+        <a
+          class="cursor-pointer text-white font-semibold block"
+          href="./05.html"
+          >siguiente</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>

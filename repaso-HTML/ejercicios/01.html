@@ -6,6 +6,11 @@
     El contenido será un párrafo con este texto:
 
     "Esta es mi primera página web."
+
+    los etiquetas h son para los títulos y p para los párrafos.
+    de los h hay 6 niveles, h1, h2, h3, h4, h5, h6
+    de los p no hay niveles, solo p
+    ambos elementos son de bloque
 -->
 
 <!DOCTYPE html>
@@ -17,15 +22,51 @@
     <link rel="stylesheet" href="../src/css/output.css" />
   </head>
   <body class="h-full w-full bg-gray-100">
-    <main class="mx-auto mt-20">
-      <h1 class="text-4xl text-center text-purple-800 font-extrabold">
-        Mi primera página
-      </h1>
-      <p class="text-center text-lg text-gray-700">
-        Esta es mi primera página web.
-      </p>
+    <main class="mx-auto mt-10 flex flex-col gap-5">
+      <section class="container p-5">
+        <h1 class="text-4xl text-purple-800 font-extrabold mb-10">
+          Ejercicio 01:
+        </h1>
+        <p class="text-gray-900">
+          Solo se pide que crees una página cuyo título sea:
+        </p>
+        <ul class="max-w-md space-y-1 text-gray-500 flex flex-col gap-1">
+          <li class="font-light">"Mi primera página".</li>
+          <li class="font-light">
+            <p class="text-gray-900 font-normal">
+              El contenido será un párrafo con este texto:
+            </p>
+            <p>"Esta es mi primera página web."</p>
+          </li>
+        </ul>
+      </section>
+      <section class="container p-5">
+        <h1 class="text-4x text-purple-800 font-extrabold">
+          Mi primera página Web
+        </h1>
+        <p class="text-lg text-gray-700">
+          Mi primera página web con algo más de texto.<br />
+          Este párrafo está formado por dos lineas.
+        </p>
+      </section>
+      <section class="container p-5">
+        <h2 class="text-lg text-purple-800 font font-extrabold">
+          Ejemplo de html:
+        </h2>
+        <code class="">
+          <pre class="text-lg bg-black p-5 text-white rounded-lg">
+              <span class="text-purple-800">&lt;h1&gt;</span> 
+                Mi primera página Web
+                <span class="text-purple-800">&lt;/h1&gt;</span>
+                <span class="text-purple-800">&lt;p&gt;</span>
+                Mi primera página web con algo más de texto.<span class="text-purple-800">&lt;br/&gt;</span>
+                Este párrafo está formado por dos lineas.
+                <span class="text-purple-800">&lt;/p&gt;</span>
+            </pre>
+        </code>
+      </section>
     </main>
-    <footer class="text-center mt-10 fixed bottom-0 w-full bg-black p-5">
+    <footer class="text-center mt-10 fixed bottom-0 w-screen bg-black p-5">
       <div class="flex flex-row justify-between">
         <a
           href="../index.html"
