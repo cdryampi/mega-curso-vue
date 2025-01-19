@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 
+Hacer responsive el pre para poder ver bien el código
+*/
+
+@media (max-width: 640px) {
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: justify;
+  }
+}
