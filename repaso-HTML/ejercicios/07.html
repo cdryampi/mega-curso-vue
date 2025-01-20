@@ -14,3 +14,76 @@ Ana, dorsal 169
 Carmen, dorsal 308 
 
 -->
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/css/output.css" />
+    <title>Ejercicio 7</title>
+  </head>
+  <body class="h-full w-full bg-gray-100">
+    <main class="mx-auto mt-10 flex flex-col gap-5">
+      <section class="container p-5">
+        <h1 class="text-4xl text-purple-800 font-extrabold mb-10">
+          Ejercicio 07: listas ordenadas y no ordenadas
+        </h1>
+        <p class="text-gray-900 mb-10">
+            Esta será una página para crear una lista ordenada<span class="text-purple-800 font-extrabold">(ol)</span>, es decir, con un número a la izquierda de cada elemento<span class="text-purple-800 font-extrabold">(li)</span>.<br>
+            El título de la página será Listas Ordenadas.<br>
+            Como primera linea aparecerá un titular de nivel 1<span class="text-purple-800 font-extrabold">(h1)</span> con el texto Orden de salida.<br>
+            En el cuerpo de la página tendremos la lista con el orden de llegada de una carrera<span class="text-purple-800 font-extrabold">(ol)</span>: un número y los nombres que se indican abajo:
+        </p>
+        <p class="text-gray-900 mb-10">
+        <ol class="list-none">
+            <li class="text-gray-900 mb-10">María, dorsal 102</li>
+            <li class="text-gray-900 mb-10">Luisa, dorsal 104</li>
+            <li class="text-gray-900 mb-10">Ana, dorsal 169</li>
+            <li class="text-gray-900 mb-10">Carmen, dorsal 308</li>
+        </ol>
+        </p>
+      </section>
+      <!-- Resolución del ejercicio -->
+      <section class="container p-5">
+        <div class="mb-10 text-4xl">
+            <h2 class="text-4xl text-purple-800 font-extrabold mb-5">Orden de salida:</h2>
+            <ol class="list-decimal gap-5 ml-32">
+                <li class="text-gray-900 mb-10">María, dorsal 102</li>
+                <li class="text-gray-900 mb-10">Luisa, dorsal 104</li>
+                <li class="text-gray-900 mb-10">Ana, dorsal 169</li>
+                <li class="text-gray-900 mb-10">Carmen, dorsal 308</li>
+            </ol>
+        </div>
+      </section>
+      <section class="container p-5">
+        <h2 class="text-lg text-purple-800 font-extrabold">Ejemplo de html:</h2>
+        <code>
+          <pre class="text-lg bg-black p-5 text-white rounded-lg">
+            <span style="color: #569cd6;">&lt;h1&gt;</span>Orden de salida:<span style="color: #569cd6;">&lt;/h1&gt;</span>
+            <span style="color: #569cd6;">&lt;ol&gt;</span>
+              <span style="color: #569cd6;">&lt;li&gt;</span>María, dorsal 102<span style="color: #569cd6;">&lt;/li&gt;</span>
+              <span style="color: #569cd6;">&lt;li&gt;</span>Luisa, dorsal 104<span style="color: #569cd6;">&lt;/li&gt;</span>
+              <span style="color: #569cd6;">&lt;li&gt;</span>Ana, dorsal 169<span style="color: #569cd6;">&lt;/li&gt;</span>
+              <span style="color: #569cd6;">&lt;li&gt;</span>Carmen, dorsal 308<span style="color: #569cd6;">&lt;/li&gt;</span>
+            <span style="color: #569cd6;">&lt;/ol&gt;</span>
+            </pre>
+        </code>
+      </section>
+    </main>
+    <footer class="text-center mt-10 fixed bottom-0 w-screen bg-black p-5">
+      <div class="flex flex-row justify-between">
+        <a
+          href="./07.html"
+          class="cursor-pointer text-white font-semibold block"
+          >anterior</a
+        >
+        <a
+          class="cursor-pointer text-white font-semibold block"
+          href="./08.html"
+          >siguiente</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>
