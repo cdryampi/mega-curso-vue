@@ -17,3 +17,126 @@ Cada línea tendrá por tanto tres celdas con estos datos:
 Básico, 1000 Mb, 50€
 Personal, 2000 Mb, 75€
 Comercial, 6000 Mb, 250€ -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/css/output.css" />
+    <title>Ejercicio 10</title>
+  </head>
+  <body class="h-full w-full bg-gray-100">
+    <main class="mx-auto mt-10 flex flex-col gap-5">
+      <section class="container p-5">
+        <h1 class="text-4xl text-purple-800 font-extrabold mb-10">
+          Ejercicio 09: tablas cabezeras y columnas
+        </h1>
+        <p class="text-gray-900 mb-10">
+          Crea una página con el título Precios de alojamiento<span
+            class="text-purple-800 font-extrabold"
+            >(table)</span
+          >.<br />
+          La página comenzará con una linea con el encabezamiento de nivel
+          1<span class="text-purple-800 font-extrabold">(h1)</span> con el texto
+          Nuestros planes.<br />
+          En una segunda linea tendremos otro bloque de encabezado esta vez de
+          nivel 3:<span class="text-purple-800 font-extrabold">(h3)</span> Lista
+          de precios.<br />
+        </p>
+        <p class="text-gray-900 mb-10">
+          Básico, 1000 Mb, 50€<br />
+          Personal, 2000 Mb, 75€<br />
+          Comercial, 6000 Mb, 250€<br />
+        </p>
+        <p class="text-gray-900 mb-10">
+          La tabla va a tener tres columnas<span
+            class="text-purple-800 font-extrabold"
+            >(tbody)</span
+          >, cada columna tiene una celda de cabecera<span
+            class="text-purple-800 font-extrabold"
+            >(thead)</span
+          >:
+        </p>
+        <p class="text-gray-900 mb-10">
+          columna 1: texto del encabezado Nombre<span
+            class="text-purple-800 font-extrabold"
+            >(th y td)</span
+          >
+        </p>
+        <p class="text-gray-900 mb-10">
+          columna 2: texto del encabezado Capacidad<span
+            class="text-purple-800 font-extrabold"
+            >(th y td)</span
+          >
+        </p>
+        <p class="text-gray-900 mb-10">
+          columna 3: texto del encabezado Precio<span
+            class="text-purple-800 font-extrabold"
+            >(th y td)</span
+          >
+        </p>
+        <p class="text-gray-900 mb-10">
+          Cada línea tendrá por tanto tres celdas
+          <span class="text-purple-800 font-extrabold">(tbody,tr y td)</span>
+          con estos datos:<br />
+          Básico, 1000 Mb, 50€<br />
+          Personal, 2000 Mb, 75€<br />
+          Comercial, 6000 Mb, 250€
+        </p>
+      </section>
+      <!-- Resolución del ejercicio -->
+      <section class="container p-5">
+        <div class="mb-10 text-4xl">
+          <h2 class="text-4xl text-purple-800 font-extrabold mb-5">
+            Nuestros planes:
+          </h2>
+          <h3 class="text-2xl text-purple-800 font-extrabold mb-5">
+            Lista de precios:
+          </h3>
+          <div>
+            <table class="table-auto">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Capacidad</th>
+                  <th>Precio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Básico</td>
+                  <td>1000 Mb</td>
+                  <td>50€</td>
+                </tr>
+                <tr>
+                  <td>Personal</td>
+                  <td>2000 Mb</td>
+                  <td>75€</td>
+                </tr>
+                <tr>
+                  <td>Comercial</td>
+                  <td>6000 Mb</td>
+                  <td>250€</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="text-center mt-10 fixed bottom-0 w-screen bg-black p-5">
+      <div class="flex flex-row justify-between">
+        <a
+          href="./09.html"
+          class="cursor-pointer text-white font-semibold block"
+          >anterior</a
+        >
+        <a
+          class="cursor-pointer text-white font-semibold block"
+          href="../index.html"
+          >Ir al index</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>
