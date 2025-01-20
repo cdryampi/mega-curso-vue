@@ -117,6 +117,8 @@ Este curso de Desarrollo de aplicaciones con tecnologías web es una formación 
 - Libro de Miguel Ángel Durán: [libro GIT](https://drive.google.com/drive/folders/1xU8ekvIfWdrnx53cP_gjsVFxhoshX4-m?usp=drive_link)
 - Link de Stack Overflow: [Stack Overflow](https://stackoverflow.com/)
 - Link de los salarios de glassdoor: [Glassdoor](https://www.glassdoor.es/Salarios/index.htm)
+- Link del grupo de Google Drive: [Google Drive](https://drive.google.com/drive/folders/1xU8ekvIfWdrnx53cP_gjsVFxhoshX4-m)
+- Link de referencia del curso: [IFCD65](https://github.com/cesarlpb/IFCD65)
 
 # Volver al [inicio](../index.html)
 
