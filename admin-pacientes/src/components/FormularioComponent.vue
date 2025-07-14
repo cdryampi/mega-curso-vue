@@ -8,10 +8,8 @@
       </p>
       <form
         class="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
-        @submit.prevent="enviarFormulario"
+        @submit.prevent="$emit('enviar-formulario')"
       >
-        <!-- nombre mascota, nombre propietario, email, alta, síntomas, registrar paciente -->
-
         <!-- Inicio del input del nombre de la mascota -->
         <div class="relative z-0 w-full mb-5 group">
           <input
@@ -32,7 +30,6 @@
           </label>
           <AlertaComponent v-if="errors?.mascota" :alertMsg="errors?.mascota" />
         </div>
-        <!-- Fin del input del nombre de la mascota -->
 
         <!-- Inicio del input de nombre del propietario -->
         <div class="relative z-0 w-full mb-5 group">
@@ -54,7 +51,7 @@
           </label>
           <AlertaComponent v-if="errors?.nombre" :alertMsg="errors?.nombre" />
         </div>
-        <!-- Fin del input de nombre del propietario -->
+
         <!-- Inicio del input del email -->
         <div class="relative z-0 w-full mb-5 group">
           <input
@@ -75,7 +72,7 @@
           </label>
           <AlertaComponent v-if="errors?.email" :alertMsg="errors?.email" />
         </div>
-        <!-- Fin del input del email -->
+
         <!-- Inicio del input de la fecha de alta -->
         <div class="relative z-0 w-full mb-5 group">
           <input
@@ -96,7 +93,7 @@
           </label>
           <AlertaComponent v-if="errors?.fecha" :alertMsg="errors?.fecha" />
         </div>
-        <!-- Fin del input de la fecha de alta -->
+
         <!-- Inicio del input de los síntomas -->
         <div class="relative z-0 w-full mb-5 group">
           <textarea
@@ -116,30 +113,21 @@
           </label>
           <AlertaComponent v-if="errors?.sintomas" :alertMsg="errors?.sintomas" />
         </div>
-        <!-- Fin del input de los síntomas -->
-        <!-- Inicio del botón de registrar paciente -->
+
+        <!-- Botón de registrar paciente -->
         <button
           type="submit"
           class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 w-full rounded-lg focus:outline-none focus:shadow-outline"
-          @click="$emit('enviar-formulario')"
         >
           Registrar paciente
         </button>
       </form>
     </div>
-
   </div>
 </template>
 
 <script setup>
-// importaciones de Vue
-
-// importaciones de los componenentes personalizados
-
 import AlertaComponent from "./AlertaComponent.vue";
-
-// importaciones de los datos de las citas
-
 
 defineEmits([
   'update:nombre-mascota',
@@ -150,14 +138,14 @@ defineEmits([
   'enviar-formulario'
 ]);
 
-const props = defineProps({
+defineProps({
   nombreMascota: String,
   nombrePropietario: String,
   email: String,
   fechaAlta: String,
-  sintomas: String
+  sintomas: String,
+  errors: Object
 });
-
 </script>
 
 <style></style>

@@ -9,7 +9,7 @@ import { useValidation } from "./composables/useValidation";
 
 // Importaciones de los datos de las citas
 import citas from "./data/citas.js";
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive, onBeforeMount } from "vue";
 
 const pacientes = ref([]);
 const paciente = reactive({
@@ -22,60 +22,62 @@ const paciente = reactive({
 
 const {
   errors,
-  validateNombre,
-  validateEmail,
-  validateTextarea,
-  validateDate,
+  clearErrors,
+  validateForm
 } = useValidation();
 
 
 const popupAltas = ref(false);
 
-citas.forEach((cita) => {
-  pacientes.value.push(cita);
-});
+// citas.forEach((cita) => {
+//   pacientes.value.push(cita);
+// });
 
 const openClosePopup = () => {
   popupAltas.value = !popupAltas.value;
 };
 
 const enviarFormulario = () => {
-  // Validar los campos del formulario
-  if (
-    !validateNombre(paciente.nombreMascota, "mascota") ||
-    !validateNombre(paciente.nombrePropietario, "propietario") ||
-    !validateEmail(paciente.email, "email") ||
-    !validateTextarea(paciente.sintomas, "sintomas") ||
-    !validateDate(paciente.fechaAlta, "fecha")
-  ) {
+  // Limpiar errores previos
+  clearErrors();
+  
+  // Validar todo el formulario
+  const result = validateForm(paciente);
+  
+  if (!result.isValid) {
+    console.log("Formulario con errores:", errors.value);
     return;
   }
-  // añaadir el id al objeto y añadir al array de altasClientes
-  pacientes.push({
-    id: altasClientes.length + 1,
-    nombreMascota: paciente.nombreMascota,
-    nombrePropietario: paciente.nombrePropietario,
-    email: paciente.email,
-    fechaAlta: paciente.fechaAlta,
-    sintomas: paciente.sintomas,
+
+  // Generar ID único
+  const nuevoId = pacientes.value.length > 0 
+    ? Math.max(...pacientes.value.map(p => p.id)) + 1 
+    : 1;
+
+  // Añadir el paciente con datos validados
+  pacientes.value.push({
+    id: nuevoId,
+    ...result.data
   });
 
-  paciente.nombreMascota = "";
-  paciente.nombrePropietario = "";
-  paciente.email = "";
-  paciente.fechaAlta = "";
-  paciente.sintomas = "";
-  console.log("Formulario enviado");
+  // Limpiar formulario
+  Object.keys(paciente).forEach(key => {
+    paciente[key] = "";
+  });
+
+  console.log("Formulario enviado correctamente");
   openClosePopup();
 };
 
 const eliminarCliente = (id) => {
   const index = pacientes.value.findIndex((cita) => cita.id === id);
-  pacientes.value.splice(index, 1);
-  console.log("Cliente eliminado");
+  if (index !== -1) {
+    pacientes.value.splice(index, 1);
+    console.log("Cliente eliminado");
+  }
 };
 
-onMounted(() => {
+onBeforeMount(() => {
   pacientes.value = citas;
   console.log("Pacientes:", pacientes.value);
 });
@@ -96,10 +98,10 @@ onMounted(() => {
     <div class="mt-12 md:flex">
       <div class="container md:mx-auto mt-20 md:flex gap-20">
         <FormularioComponent
-          v-model:nombreMascota="paciente.nombreMascota"
-          v-model:nombrePropietario="paciente.nombrePropietario"
+          v-model:nombre-mascota="paciente.nombreMascota"
+          v-model:nombre-propietario="paciente.nombrePropietario"
           v-model:email="paciente.email"
-          v-model:fechaAlta="paciente.fechaAlta"
+          v-model:fecha-alta="paciente.fechaAlta"
           v-model:sintomas="paciente.sintomas"
           :errors="errors"
           @enviar-formulario="enviarFormulario"
@@ -109,8 +111,6 @@ onMounted(() => {
           @eliminar-cliente="eliminarCliente"
         />
       </div>
-
-
     </div>
   </div>
   <!-- Popup cuando se da de alta un cliente-->
